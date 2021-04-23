@@ -1,5 +1,7 @@
 import React from 'react';
 import Product from '../Product/Product';
+import { addToCart } from '../../redux/actions/cartActions';
+import { connect } from 'react-redux';
 
 const Shop = () => {
 
@@ -21,4 +23,19 @@ const Shop = () => {
     );
 };
 
-export default Shop;
+const mapStateToProps = state => {
+    return {
+        cart: state.cart,
+        products: state.products
+    }
+}
+
+const mapDispatchToProps = {
+    addToCart: addToCart
+}
+
+// const connectToStore = connect(mapStateToProps, mapDispatchToProps);
+
+// connect(mapStateToProps, mapDispatchToProps)(Shop);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);
